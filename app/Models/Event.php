@@ -9,11 +9,18 @@ class Event extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'google_id',
+        'event_id',
         'name',
         'description',
         'allday',
         'started_at',
         'ended_at',
     ];
+    protected $with = [
+        'calendar',
+    ];
+    public function calendar()
+    {
+        return $this->belongsTo(Calendar::class);
+    }
 }

@@ -14,7 +14,9 @@ class GoogleAccountController extends Controller
     }
 
     /**
-     * Display a listing of the google accounts.
+     * index
+     *
+     * @return void
      */
     public function index()
     {
@@ -23,6 +25,14 @@ class GoogleAccountController extends Controller
         ]);
     }
 
+    /**
+     * store
+     *
+     * @param Request request
+     * @param Google google
+     *
+     * @return void
+     */
     public function store(Request $request, Google $google)
     {
         if (!$request->has('code')) {
@@ -45,6 +55,14 @@ class GoogleAccountController extends Controller
         return redirect()->route('google.dashboard');
     }
 
+    /**
+     * destroy
+     *
+     * @param GoogleAccount googleAccount
+     * @param Google google
+     *
+     * @return void
+     */
     public function destroy(GoogleAccount $googleAccount, Google $google)
     {
         $googleAccount->delete();

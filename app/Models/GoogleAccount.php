@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Jobs\FetchGoogleCalendar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,6 +22,15 @@ class GoogleAccount extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($googleAccount) {
+            FetchGoogleCalendar::dispatch($googleAccount);
+        });
     }
 
 }

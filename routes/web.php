@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\GoogleAccountController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +28,7 @@ Route::prefix('google')->group(function () {
     Route::get('/oauth', [GoogleAccountController::class, 'store'])->name('google.store');
     Route::delete('/{googleAccount}', [GoogleAccountController::class, 'destroy'])->name('google.destroy');
 });
+
+Route::get('/events', [EventController::class, 'index'])->name('google.event');
 
 require __DIR__ . '/auth.php';

@@ -3,6 +3,8 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
         </h2>
+        <a href="{{ route('google.event') }}"
+                        class="text-sm text-gray-700 dark:text-gray-500 underline">Events</a>
     </x-slot>
 
     <div class="py-12">
@@ -12,6 +14,7 @@
                     <a class="btn btn-primary btn-sm" href="{{ route('google.store') }}">
                         Add Google Account
                     </a>
+
                 </div>
 
                 <div class="card-body">

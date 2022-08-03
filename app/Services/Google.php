@@ -18,6 +18,13 @@ class Google
         $this->client = $client;
     }
 
+    /**
+     * service
+     *
+     * @param mixed service
+     *
+     * @return void
+     */
     public function service($service)
     {
         $className = "Google_Service_" . $service;
@@ -25,6 +32,14 @@ class Google
         return new $className($this->client);
     }
 
+    /**
+     * __call
+     *
+     * @param mixed method
+     * @param mixed args
+     *
+     * @return void
+     */
     public function __call($method, $args)
     {
         if (!method_exists($this->client, $method)) {
@@ -34,6 +49,13 @@ class Google
         return call_user_func_array([$this->client, $method], $args);
     }
 
+    /**
+     * connectUsing
+     *
+     * @param mixed token
+     *
+     * @return void
+     */
     public function connectUsing($token)
     {
         $this->client->setAccessToken($token);
@@ -41,10 +63,18 @@ class Google
         return $this;
     }
 
+    /**
+     * revokeToken
+     *
+     * @param mixed token
+     *
+     * @return void
+     */
     public function revokeToken($token = null)
     {
         $token = $token ?? $this->client->getAccessToken();
 
         return $this->client->revokeToken($token);
     }
+
 }

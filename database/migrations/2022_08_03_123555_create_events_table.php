@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->string('google_id');
+
+            $table->unsignedBigInteger('calendar_id');
+            $table->foreign('calendar_id')->references('id')->on('calendars')->onDelete('cascade');
+
+            $table->string('event_id');
             $table->string('name');
             $table->text('description')->nullable();
             $table->boolean('allday')->default(false);
